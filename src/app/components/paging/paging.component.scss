@@ -1,0 +1,30 @@
+@use '../../../variables' as *;
+
+$progressBar-sample-theme: progress-linear-theme(
+    $track-color: rgba(181,181,181, .5),
+    $fill-color-default: orange
+);
+
+.grid__wrapper {
+    @include progress-linear($progressBar-sample-theme);
+
+    --ig-size: var(--ig-size-medium);
+    margin: 0 16px;
+    padding-top: 10px;
+}
+
+.cell__inner,
+.cell__inner_2 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.cell__inner {
+    position: relative;
+    justify-content: space-between;
+}
+
+.linear-bar-container {
+    width: 100%;
+}

@@ -1,0 +1,41 @@
+<div class="grid__wrapper">
+    <igx-grid #grid1 [data]="data" [autoGenerate]="false" height="500px" width="100%" [sortingOptions]="sortingOptions">
+        <igx-grid-toolbar>
+            <button class="button-opitions" igxButton="contained" (click)="grid1.sortingExpressions = []">
+                Clear Sorting
+            </button>
+
+            <button class="button-opitions" igxButton="contained" (click)="grid1.groupingExpressions = []">
+                Clear Grouped columns
+            </button>
+            <igx-grid-toolbar-actions>
+                <igx-simple-combo #comboItem
+                    [data]="sortingTypes"
+                    [displayKey]="'mode'"
+                    [(ngModel)]="sortingOptions"
+                    (keydown)="handleSearchResults($event)">
+                    <ng-template igxComboClearIcon></ng-template>
+                    <ng-template igxComboItem let-item>
+                        <div>{{ item.mode | uppercase }}</div>
+                    </ng-template>
+                </igx-simple-combo>
+            </igx-grid-toolbar-actions>
+        </igx-grid-toolbar>
+
+        <igx-column field="OrderID" header="Order ID" [groupable]="true"  [sortable]="true">
+        </igx-column>
+        <igx-column field="CategoryName" header="Category Name" [dataType]="'string'" [groupable]="true" [sortable]="true">
+        </igx-column>
+        <igx-column field="CompanyName" header="Company Name" [dataType]="'string'" [groupable]="true" [sortable]="true">
+        </igx-column>
+        <igx-column field="ShipCountry" header="Ship Country" [dataType]="'string'" [groupable]="true" [sortable]="true">
+        </igx-column>
+        <igx-column field="SaleAmount" header="Sale Amount" dataType="number" [groupable]="true" [sortable]="true">
+            <ng-template igxCell let-cell="cell" let-val let-row>
+                ${{val}}
+            </ng-template>
+        </igx-column>
+        <igx-column field="ShippedDate" header="Shipped Date" [dataType]="'date'" [formatter]="formatDate" [sortable]="true">
+        </igx-column>
+    </igx-grid>
+</div>
